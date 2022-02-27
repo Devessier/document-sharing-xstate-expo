@@ -1,74 +1,57 @@
-import React from "react";
+import React from 'react';
 import {
-  Text,
-  Link,
   HStack,
-  Center,
   Heading,
-  Switch,
-  useColorMode,
   NativeBaseProvider,
-  extendTheme,
   VStack,
-  Code,
-} from "native-base";
-import NativeBaseIcon from "./components/NativeBaseIcon";
+  Spacer,
+  Box,
+  StatusBar,
+  IconButton,
+  Icon,
+} from 'native-base';
+import { Feather } from '@expo/vector-icons';
 
-// Define the config
-const config = {
-  useSystemColorMode: false,
-  initialColorMode: "dark",
-};
-
-// extend the theme
-export const theme = extendTheme({ config });
-type MyThemeType = typeof theme;
-declare module "native-base" {
-  interface ICustomTheme extends MyThemeType {}
-}
 export default function App() {
   return (
     <NativeBaseProvider>
-      <Center
-        _dark={{ bg: "blueGray.900" }}
-        _light={{ bg: "blueGray.50" }}
-        px={4}
-        flex={1}
-      >
-        <VStack space={5} alignItems="center">
-          <NativeBaseIcon />
-          <Heading size="lg">Welcome to NativeBase</Heading>
-          <HStack space={2} alignItems="center">
-            <Text>Edit</Text>
-            <Code>App.tsx</Code>
-            <Text>and save to reload.</Text>
-          </HStack>
-          <Link href="https://docs.nativebase.io" isExternal>
-            <Text color="primary.500" underline fontSize={"xl"}>
-              Learn NativeBase
-            </Text>
-          </Link>
-          <ToggleDarkMode />
-        </VStack>
-      </Center>
-    </NativeBaseProvider>
-  );
-}
+      <StatusBar barStyle="dark-content" />
 
-// Color Switch Component
-function ToggleDarkMode() {
-  const { colorMode, toggleColorMode } = useColorMode();
-  return (
-    <HStack space={2} alignItems="center">
-      <Text>Dark</Text>
-      <Switch
-        isChecked={colorMode === "light"}
-        onToggle={toggleColorMode}
-        aria-label={
-          colorMode === "light" ? "switch to dark mode" : "switch to light mode"
-        }
-      />
-      <Text>Light</Text>
-    </HStack>
+      <Box bg="gray.100" flex={1}>
+        <VStack flex={1} safeArea>
+          <Heading px="2" py="4">
+            Document viewer
+          </Heading>
+
+          <Box flex={1} bg="gray.200" />
+
+          <HStack
+            bg="white"
+            borderTopWidth="1"
+            borderColor="gray.300"
+            py="2"
+            px="4"
+            alignItems="center"
+          >
+            <Spacer />
+
+            <IconButton
+              icon={<Icon as={Feather} name="share" />}
+              borderRadius="full"
+              _icon={{
+                color: 'gray.800',
+                size: 'sm',
+              }}
+              _hover={{
+                bg: 'gray.100',
+              }}
+              _pressed={{
+                bg: 'gray.100',
+              }}
+            />
+          </HStack>
+        </VStack>
+      </Box>
+    </NativeBaseProvider>
   );
 }
