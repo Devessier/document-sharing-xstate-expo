@@ -14,6 +14,8 @@ import { Feather } from '@expo/vector-icons';
 import PdfReader from 'rn-pdf-reader-js';
 
 export default function App() {
+  const documentUri = 'https://erlang.org/download/getting_started-5.4.pdf';
+
   return (
     <NativeBaseProvider>
       <StatusBar barStyle="dark-content" />
@@ -27,7 +29,7 @@ export default function App() {
           <Box flex={1} bg="gray.200">
             <PdfReader
               source={{
-                uri: 'https://erlang.org/download/getting_started-5.4.pdf',
+                uri: documentUri,
               }}
             />
           </Box>
